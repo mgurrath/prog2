@@ -6,14 +6,12 @@ public class Stud extends Person {
 
     private int matNr;
 
-    /* Konstruktoren */
+    private int bel_module = 0;
 
     public Stud(String name, int geburtsjahr) {
         super(name, geburtsjahr);
         matNr = zaehler++;
     }
-
-    /* Instanzmethoden */
 
     public int matNr() {
         return matNr;
@@ -31,5 +29,19 @@ public class Stud extends Person {
         if (!super.equals(o)) return false;
         Stud stud = (Stud) o;
         return matNr == stud.matNr;
+    }
+
+    public void anmelden(Modul m) {
+        m.teilnehmer.insert(this);
+        this.bel_module++;
+    }
+
+    public void abmelden(Modul m) {
+        m.teilnehmer.delete(this);
+        this.bel_module--;
+    }
+
+    public int belegt() {
+        return this.bel_module;
     }
 }
