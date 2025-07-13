@@ -22,6 +22,7 @@ public class EVLL<T> {
 
     public EVLL() {
         first = null;
+        last = null;
         size = 0;
     }
 
@@ -65,6 +66,8 @@ public class EVLL<T> {
                 }
 
                 prevEl.next = currEl.next;
+                size--;
+                break;
             }
 
             prevEl = currEl;
@@ -107,5 +110,16 @@ public class EVLL<T> {
         }
 
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        ListEl cursor = first;
+        for(int i = 0; i < size; i++) {
+            s += cursor.value + " ";
+            cursor = cursor.next;
+        }
+        return s;
     }
 }
